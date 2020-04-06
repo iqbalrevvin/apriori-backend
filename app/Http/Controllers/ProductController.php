@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\Model\Produk;
 
 class ProductController extends Controller
 {
     public function index()
     {
-    	$product = DB::table('produk')->get();
+    	$product = Produk::All();
 
     	$response = [
     		'status' => 'success',
     		'message' => 'Successfully displayed product',
-    		'amount_data' => $product->count(),
     		'data' => $product
     	];
 

@@ -10,10 +10,6 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-  //    	$request->validate([
-		//     'username' => 'bail|required|unique:posts|max:255',
-		//     'password' => 'required',
-		// ]);
 		if($request->email == '' || $request->password == ''){
 			return response([
 				'status' => 'error',
@@ -27,7 +23,7 @@ class UserController extends Controller
 	    			'message' => ['These credentials do not match our records.']
 	    		], 404);
 	    	}
-	    	$token = $user->createToken('MyToken')->plainTextToken;
+	    	$token = $user->createToken($request->email)->plainTextToken;
 	    	$response = [
 	    		'status' => 'Success',
 	    		'user' => $user,
@@ -36,7 +32,6 @@ class UserController extends Controller
 		}
     	
     	
-
     	return response($response, 201);
     }
 }
