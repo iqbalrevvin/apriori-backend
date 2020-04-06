@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', 'UserController@index');
+Route::middleware('api')->post('login', 'UserController@index');
 Route::get('product', 'ProductController@index');
 Route::get('stock', 'StockController@index');
 Route::get('transaction', 'TransactionController@index');
